@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap");
+body {
+  font-family: "Times New Roman";
+  letter-spacing: -1%;
+}
+
+main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+#object {
+  width: 250px;
+  height: 200px;
+  max-width: 60vw;
+  max-height: 50vh;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+#object img {
+  object-fit: contain;
+  height: 150px;
+  max-height: 100%;
+}
+
+#actions {
+  margin: 1rem auto;
+  text-align: center;
+  line-height: 200%;
+}
+#actions a {
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 2rem;
+  letter-spacing: -0.25px;
+}
+#actions a:hover {
+  font-style: italic;
+}
+#actions button {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  margin: 0;
+  line-height: 140%;
+  background: none;
+  border: 0;
+  font-family: sans-serif;
+  cursor: pointer;
+  background: #E7FF53;
+  transition: box-shadow 200ms ease-in-out;
+  box-shadow: inset -4px -4px 8px rgba(75, 161, 255, 0.51);
+  border-radius: 4px;
+}
+#actions button:hover {
+  box-shadow: inset -4px -8px 12px #4BA1FF;
+}
+
+#toggleAudio {
+  position: fixed;
+  bottom: 0;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=s.css.map */

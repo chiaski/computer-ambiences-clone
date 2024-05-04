@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object</title>
+  <script src="../assets/socket.io.js"></script>
+  <script src="../assets/jquery.min.js"></script>
+  
+  
+  <link rel="stylesheet" href="o.css" type="text/css" />
+
+  
+</head>
+<body>
+  
+  <div id="bg"></div>
+  
+  
+<div id="world">
+<main>
+  
+</main>
+  </div>
+  
+<script type="text/javascript">
+
+function adjustBG(l, t, w, h){
+  if(!w) w = screen.width;
+  if(!h) h = screen.height;
+  if(!l) l = window.screenX;
+  if(!t) t = window.screenY;
+  
+  console.log(w,h, l, t, window.screenX, window.screenY);
+  
+  $("#bg")
+    .css("width", w)
+    .css("height", h)
+    .css("top", `-${t - 64}px`) // chrome
+    .css("left", `-${l - 7}px`) // chrome
+}
+  
+  
+$(document).ready(function () {
+
+  adjustBG();
+//function parseURL() {
+//  let decode = $(location).attr("href").split("=")[1];
+//  console.log(decode);
+// return decodeURIComponent(decode);
+//}
+//
+//
+//function getParameterByName(name, url) {
+//  if (!url) url = window.location.href;
+//  name = name.replace(/[\[\]]/g, "\\$&");
+//  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+//      results = regex.exec(url);
+//  if (!results) return null;
+//  if (!results[2]) return '';
+//  return decodeURIComponent(results[2].replace(/\+/g, " "));
+//}
+//
+//let t = getParameterByName("t");
+//
+//const newUrl = window.location.pathname; 
+//history.pushState({}, document.title, newUrl);
+    
+});
+  
+  
+function image(content) {
+  console.log(content);
+  $("main").html(content);
+}
+  
+  
+
+window.addEventListener('message', function(event) {
+  console.log(event, event.data.htmlContent);
+  if (event.data && event.data.htmlContent) {
+    $("main").html(event.data.htmlContent);
+  }
+});
+
+
+</script>
+</body>
+</html>

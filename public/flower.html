@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flower</title>
+  <script src="assets/socket.io.js"></script>
+  <script src="assets/jquery.min.js"></script>
+  <script src="assets/world.js"></script>
+  
+  <link rel="stylesheet" href="./styling/s.css" type="text/css" />
+  <link rel="stylesheet" href="./styling/objects.css" type="text/css" />
+  <style type="text/css">
+    
+    /* Adjust the effects of your object... */
+  
+  
+  </style>
+  
+<script type="text/javascript">
+var Identity = "flower";
+</script>
+</head>
+<body>
+<main>
+
+  
+ 
+  <!-- SOUND FILE -->
+  <audio loop>
+    <source src="sounds/calm_pad.wav">
+  </audio>
+  
+
+  <!-- IMAGE -->
+  <div id="object">
+    <img src="images/flower.gif">
+  </div>
+  
+  <!-- CONTROLS FOR MY OBJECT -->
+  <div id="actions">
+    
+    <!--   Plays the sound for value seconds  -->
+    <button action="play" value="40">Bloom</button>
+    
+    ·
+
+    <!--   Adjusts the tempo/speed  -->
+    <button action="tempo" value="-0.05">Slow</button>
+    <button action="tempo" value="+0.05">Speed</button>
+
+    ·
+    <!--   Adjusts visuals  -->
+    <button action="grow" value="0.1">Grow</button>
+
+    
+    <br>
+    
+    <!--  Volume slider  -->
+    <input type="range" id="volume" min="0" max="1" step="0.05" value="0.7"> <span volume>1</span>
+  </div>
+  
+  
+  
+  <div class="caption"></div>
+
+</main>
+  
+
+<!--  MODIFY THE OBJECT HERE... -->
+<script type="text/javascript">
+// Specify range of where object can appear
+let LeftMin = 0; let LeftMax = 95;
+let TopMin = 40; let TopMax = 90;
+  
+  
+var Actions = {
+  "play": function(seconds){
+    // Play for N seconds
+      $("audio")[0].play();
+    
+    setTimeout(function(){
+      $("audio")[0].pause();
+        updateAudio();
+    }, parseFloat(seconds) * 1000);
+    
+  },
+  "playNtimes": function(times){
+    // Get the duration of the object and play it X times
+    let seconds = $("audio")[0].duration * times;
+    Actions.play(seconds);
+  },
+  
+  "tempo": function(intensity){
+    let currentRate = $("audio")[0].playbackRate;    
+    $("audio")[0].playbackRate = currentRate + parseFloat(intensity);
+  },
+  // visuals
+  "grow": function(intensity){
+    
+    let currScale =  parseFloat(($('#object').attr('style') || '').match(/scale\s*\(([^)]+)\)/)?.[1]?.trim()) || 1;
+                                
+      console.log(intensity);
+                                
+    $("#object").css("transform", "scale(" + (currScale + parseFloat(intensity)) +")")
+    
+  }
+  
+}
+  
+  
+  
+// What affects my object...
+    
+var Reactions = {
+  "raincloud": {
+    "play": function(){
+      // If it rains, mkae the flower bloom
+      Actions.play(8);
+      
+    }
+  }
+}
+
+
+
+
+</script>
+<script src="object.js"></script>
+  
+</body>
+</html>

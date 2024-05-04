@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>🌎 </title>
+  <script src="assets/jquery.min.js"></script>
+  <style type="text/css">
+  
+    body{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+  
+    main{
+      text-align: center;
+      max-width: 400px;
+    }
+    
+    button{
+      padding: 0.15rem .5rem;
+      margin: .15rem;
+    }
+    
+  </style>
+</head>
+<body>
+  
+
+<main>
+
+  
+  <button href="world/index.html">World</button>
+  <br><br>
+  
+  <button href="flower.html">Flower</button>
+  <button href="cloud.html">Cloud</button>
+  <button href="angel.html">Angel</button>
+  <button href="sun.html">Sun</button>
+  <button href="bird.html">Bird</button>
+  <button href="butterfly.html">Butterfly</button>
+  <button href="balloon.html">Balloon</button>
+  <button href="raincloud.html">Raincloud</button>
+
+
+</main>
+
+  <script type="text/javascript">
+  
+  $("main").on("click", "button", function(){
+    location.href = $(this).attr("href");
+  });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angel</title>
+  <script src="assets/socket.io.js"></script>
+  <script src="assets/jquery.min.js"></script>
+  <script src="assets/world.js"></script>
+  
+  <link rel="stylesheet" href="./styling/s.css" type="text/css" />
+  <link rel="stylesheet" href="./styling/objects.css" type="text/css" />
+  <style type="text/css">
+    
+    /* Adjust the effects of your object... */
+    body{
+      background:#FFB7DE;
+    }
+  
+  </style>
+  
+<script type="text/javascript">
+var Identity = "angel";
+</script>
+</head>
+
+<!-- Content written out in the page  -->
+<body>
+<main>
+
+  
+ 
+  <!-- SOUND FILE -->
+  <audio loop>
+    <source src="sounds/angel.wav">
+  </audio>
+  
+
+  <!-- IMAGE -->
+  <div id="object">
+    <img src="images/angel.gif">
+  </div>
+  
+  <!-- CONTROLS FOR MY OBJECT -->
+  <div id="actions">
+    
+    <!--   Plays the sound for value seconds  -->
+    <button action="play" value="40">Sing</button>
+    <button action="playNtimes" value="2">Praise</button>
+    
+    ·
+
+    <!--   Adjusts the tempo/speed  -->
+    <button action="tempo" value="-0.05">Slow</button>
+    <button action="tempo" value="+0.05">Speed</button>
+    
+    ·
+    
+    <button action="changeAudio" value="sounds/angel.wav">Hymn</button>
+    <button action="changeAudio" value="sounds/angel_harp.wav">Harp</button>
+    
+    ·
+    
+    <button action="changeHue">Shine</button>
+    
+    <br>
+    <!--  Volume slider  -->
+    <input type="range" id="volume" min="0" max="1" step="0.05" value="0.7"> <span volume>1</span>
+    
+
+  </div>
+  
+  
+  
+  <div class="caption"></div>
+
+</main>
+  
+
+<!--  MODIFY THE OBJECT HERE... -->
+<script type="text/javascript">
+// Specify range of where object can appear
+let LeftMin = 0; let LeftMax = 90;
+let TopMin = 40; let TopMax = 55;
+  
+  
+var Actions = {
+  
+  // Playing the sound
+  "play": function(seconds){
+    // Play for N seconds
+      $("audio")[0].play();
+    
+    setTimeout(function(){
+      $("audio")[0].pause();
+        updateAudio();
+    }, parseFloat(seconds) * 1000);
+    
+  },
+  "playNtimes": function(times){
+    // Get the duration of the object and play it X times
+    let seconds = $("audio")[0].duration * times;
+    Actions.play(seconds);
+  },
+  
+  // Change the tempo
+  "tempo": function(intensity){
+    let currentRate = $("audio")[0].playbackRate;    
+    $("audio")[0].playbackRate = currentRate + parseFloat(intensity);
+  },
+  
+  // Change the sound file
+  "changeAudio": function(song){
+    changeAudio(song);
+  },
+
+  // Change the color of the object
+  "changeHue": function(intensity){
+    // Changes the color of the object
+    $("#object").css(`filter`, `hue-rotate(${randInt(0,300)}deg)`);
+  }
+  
+  
+}
+  
+  
+  
+// What affects my object...
+     
+var Reactions = {
+  "flower": {
+    "play": function(){
+      Actions.play(3);
+    }
+  }
+}
+
+
+
+
+
+</script>
+<script src="object.js"></script>
+  
+</body>
+</html>
+
+
